@@ -1,10 +1,14 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class Transaction {
-  @required final String id;
-  @required final String title;
-  @required final double amount;
-  @required final DateTime date;
+  @required
+  final String id;
+  @required
+  final String title;
+  @required
+  final double amount;
+  @required
+  final DateTime date;
 
   Transaction({
     required this.id,
