@@ -20,12 +20,12 @@ class Myapp extends StatelessWidget {
         accentColor: Colors.amber,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-          titleLarge: TextStyle(
-            fontFamily: 'Opensans',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+              titleLarge: TextStyle(
+                fontFamily: 'Opensans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
                 titleLarge: TextStyle(
@@ -47,16 +47,11 @@ class Tracking extends StatefulWidget {
 }
 
 class TrackingState extends State<Tracking> {
-  final List<Transaction> _userTransactions = [
-  ];
+  final List<Transaction> _userTransactions = [];
 
-  List<Transaction> get _recentTransactions {
+  List<Transaction> get recenttransaction {
     return _userTransactions.where((tx) {
-      return tx.date.isAfter(
-        DateTime.now().subtract(
-          Duration(days: 7),
-        ),
-      );
+      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
 
@@ -106,8 +101,8 @@ class TrackingState extends State<Tracking> {
             icon: Icon(Icons.add),
           ),
           IconButton(
-              onPressed: () => {},
-              icon: Icon(Icons.add_a_photo_outlined),
+            onPressed: () => {},
+            icon: Icon(Icons.add_a_photo_outlined),
           ),
         ],
       ),
@@ -115,7 +110,7 @@ class TrackingState extends State<Tracking> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Chart(recentTransaction: _recentTransactions),
+            Chart(recenttransaction),
             TransactionList(_userTransactions),
           ],
         ),
