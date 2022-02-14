@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatefulWidget {
@@ -34,8 +35,8 @@ class _NewTransactionState extends State<NewTransaction> {
     return Card(
       child: Container(
         padding: EdgeInsets.only(
-            left: 10,
-            right: 10,
+          left: 10,
+          right: 10,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -55,12 +56,31 @@ class _NewTransactionState extends State<NewTransaction> {
               onSubmitted: (_) => submitData(),
               controller: amountcontroller,
             ),
-            FlatButton(
+            Container(
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  Text('No Date Chosen!'),
+                  FlatButton(
+                    textColor: Theme.of(context).primaryColor,
+                    child: Text(
+                        'Chose One',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {},
+                  )
+                ],
+              ),
+            ),
+            RaisedButton(
               onPressed: submitData,
               child: Text(
                 "Add Transaction",
-                style: TextStyle(color: Colors.purple),
               ),
+              color: Theme.of(context).primaryColor,
+              textColor: Colors.white,
             ),
           ],
         ),
