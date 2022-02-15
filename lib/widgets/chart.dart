@@ -23,15 +23,15 @@ class Chart extends StatelessWidget {
           totalSum += recentTransaction[i].amount;
         }
       }
-    /*
+
       print(DateFormat.E().format(weekDay));
       print(totalSum);
-    */
+
       return {
         'day': DateFormat.E().format(weekDay),
         'amount': totalSum,
       };
-    }).reversed.toList();
+    });
   }
 
   double get totalSpending {

@@ -18,6 +18,7 @@ class Myapp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
+        errorColor: Colors.red,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
               titleLarge: TextStyle(
@@ -60,12 +61,14 @@ class TrackingState extends State<Tracking> {
     }).toList();
   }
 
-  void addNewTransaction(String txtitle, double txamount) {
+  void addNewTransaction(String txtitle, double txamount , DateTime chosenDate) {
     final newTx = Transaction(
         title: txtitle,
         amount: txamount,
-        date: DateTime.now(),
-        id: DateTime.now().toString());
+        date: chosenDate,
+        id: DateTime.now().toString(),
+    );
+
     setState(() {
       _userTransactions.add(newTx);
     });
@@ -80,7 +83,14 @@ class TrackingState extends State<Tracking> {
             child: NewTransaction(addNewTransaction),
             behavior: HitTestBehavior.opaque,
           );
-        });
+        }
+     );
+  }
+
+  void _deleteTransaction (String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
   }
 
   @override
@@ -116,10 +126,11 @@ class TrackingState extends State<Tracking> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Chart(recenttransaction),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.red,
